@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 
 const doctorSchema = new mongoose.Schema({
     name: {type: String, required: true},
@@ -7,7 +7,7 @@ const doctorSchema = new mongoose.Schema({
     image:{type: String, required: true},
     speciality: {type: String, required: true},
     degree: {type: String, required: true},
-    experience: {type: Number, required: true},
+    experience: {type: String, required: true},
     about: {type: String, required: true},
     available:{type: Boolean, required:false},
     fee:{type: Number, required: true},
