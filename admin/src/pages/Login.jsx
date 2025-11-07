@@ -1,18 +1,32 @@
-import React,{useState} from 'react'
+import React,{useContext,useState} from 'react'
 import {assets} from '../assets/assets'
 import { AdminContext } from '../context/AdminContext'
+import axios from 'axios'
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [state,setState ] = useState('Admin')
     const [email,setEmail ] = useState('')
     const [password,setPassword ] = useState('')
-    const {setAToken, backendURL}= useContext(AdminContext)
+    const {setAToken, backendUrl}= useContext(AdminContext)
+    
 
 
     const onSubmitHandler = async(event) =>{
      event.preventDefault();
 
      try{
+
+      if(state === 'Admin'){
+        const {data} = await axios.post(backendUrl+'/api/admin/login',{ email,password})
+        if(data.success){
+          localStorage.setItem('aToken',data.token)
+          setAToken(data.token)
+        }else{
+          toast.error(data.message)
+        }
+      }else{
+      }
 
      }catch(error){
       
@@ -28,12 +42,12 @@ const Login = () => {
              Login</p>
              <div className='w-full'>
               <p>Email</p>
-              <input onClick={(e) => setEmail(e.target.value)} value={email} className='border border-[#DADADA] rounded p-2 w-full' type="email" required />
+              <input onChange={(e) => setEmail(e.target.value)} value={email} autoComplete="username"  className='border border-[#DADADA] rounded p-2 w-full' type="email" required />
              </div>
 
              <div className='w-full'>
               <p>Password</p>
-              <input onClick={(e) => setPassword(e.target.value)} value={password} className='border border-[#DADADA] rounded p-2 w-full mt-1' type="password" required />
+              <input onChange={(e) => setPassword(e.target.value)} value={password}  autoComplete="current-password"className='border border-[#DADADA] rounded p-2 w-full mt-1' type="password" required />
              </div>
              <button className='bg-primary text-white w-full py-2 rounded-md text-base '>Login</button>
              
