@@ -57,6 +57,8 @@ import 'dotenv/config';
 import connectDB from './config/mongodb.js';
 import connectCloudinary from './config/cloudinary.js';
 import adminRouter from './routes/adminRoute.js';
+import doctorRouter from './routes/doctorRoute.js';
+import userRouter from './routes/useRoute.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -72,7 +74,10 @@ app.use(cors());
 
 // mount router
 app.use('/api/admin', adminRouter);
-console.log('Mounted: /api/admin');
+//console.log('Mounted: /api/admin');
+
+app.use('/api/doctor', doctorRouter);
+app.use('/api/user', userRouter);
 
 
 
