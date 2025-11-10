@@ -1,29 +1,35 @@
 import upload from '../middlewares/multer.js';
 import express from 'express';
-import { addDoctor, loginAdmin } from '../controllers/adminController.js';
+console.log('>>> adminRoute.js LOADED'); 
+import { addDoctor, allDoctors, loginAdmin } from '../controllers/adminController.js';
 import authAdmin from '../middlewares/authAdmin.js';
+import { changeAvailability } from '../controllers/doctorController.js';
 
 
 const adminRouter = express.Router()
 
-// ✅✅ TEMPORARY ROUTE for debugging file upload
-adminRouter.post('/debug-any', upload.any(), (req, res) => {
-  console.log('FILES =>', req.files?.map(f => ({
-    fieldname: f.fieldname,
-    originalname: f.originalname,
-    mimetype: f.mimetype
-  })));
-  console.log('BODY =>', req.body);
-  res.json({
-    files: req.files?.map(f => ({ fieldname: f.fieldname, originalname: f.originalname })),
-    body: req.body
-  });
-});
+// ✅✅ HEALTH CHECK ROUTE
+adminRouter.get('/_ping', (req, res) => res.json({ ok: true, where: 'admin router' }));
+
 
 // ✅ REAL ROUTE
 
 adminRouter.post('/add-doctor', authAdmin,upload.single('image'), addDoctor)
 adminRouter.post('/login', loginAdmin)
+
+adminRouter.get('/all-doctors',  authAdmin, allDoctors);
+
+adminRouter.post('/all-doctors', authAdmin,allDoctors)
+
+adminRouter.post('/change-availability', authAdmin,changeAvailability)
+
+// Show what this router exposes
+console.log(
+  'adminRouter routes ->',
+  adminRouter.stack
+    .filter(l => l.route)
+    .map(l => Object.keys(l.route.methods)[0].toUpperCase() + ' ' + l.route.path)
+);
 
 
 export default adminRouter;
