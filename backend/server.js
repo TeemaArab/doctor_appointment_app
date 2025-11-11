@@ -69,8 +69,9 @@ connectCloudinary();
 
 
 // core middlewares
-app.use(express.json());
+
 app.use(cors());
+app.use(express.json());
 
 // mount router
 app.use('/api/admin', adminRouter);
