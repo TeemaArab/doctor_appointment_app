@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken';
 import { v2 as cloudinary } from 'cloudinary';
 import doctorModel from '../models/doctorModel.js';
 import appointmentModel from '../models/appointmentModel.js';
+import Stripe from 'stripe';
+
 
 //--------------------------------------------------------------------------------------------
 
@@ -226,5 +228,104 @@ const cancelAppointment = async(req,res) => {
     }
 }
 
+//--------------------------------------------------------------------------------------------
 
-export {registerUser, loginUser, getProfile, updateProfile, bookAppointment , listAppointment, cancelAppointment};
+// create logic for appointment fee payment
+const stripe = new Stripe(process.env.STRIPE_KEY_SECRET);
+    
+// API to make payment 
+
+const paymentStripe = async(req,res) => {
+    try{
+        const {appointmentId} = req.body;
+        const appointmentData = await appointmentModel.findById(appointmentId);
+
+        if(!appointmentData ||appointmentData.cancelled){
+            return res.json({success:false,message:"Appointment cancelled or not found"})
+        }
+        // create options for stripe payment
+        const options={
+            amount: appointmentData.amount * 100, // to remove decimal points
+            currency: (process.env.CURRENCY||'CAD').toLowerCase(),
+            receipt: appointmentId,
+        }
+
+        // creation of an order
+        const session = await stripe.checkout.sessions.create({
+              mode: 'payment',
+            payment_method_types: ['card'],
+            line_items: [{
+                price_data: {
+                    currency: options.currency,
+                    product_data: {
+                        name: 'Appointment Fee',
+                    },
+                    unit_amount: options.amount,
+                },
+                quantity: 1,
+            }],
+          
+            metadata: { appointmentId: options.receipt },
+            success_url: `${process.env.FRONTEND_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${process.env.FRONTEND_URL}/my-appointments`,
+        });
+        res.json({success:true, order: session});
+        
+    }catch(error){
+        console.log(error);
+        res.json({success:false,message:error.message})
+    }
+}
+
+const verifyStripePayment = async (req, res) => {
+  try {
+    const { session_id } = req.query;
+    if (!session_id) {
+      return res.json({ success: false, message: 'Missing session_id' });
+    }
+
+    // 1) Get Checkout Session from Stripe
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+    if (session.payment_status !== 'paid') {
+      return res.json({ success: false, message: 'Payment not completed' });
+    }
+
+    // 2) Pull appointmentId we stored in metadata
+    const appointmentId = session.metadata?.appointmentId || null;
+
+    // 3) Load appointment and update payment flag (idempotent)
+    let userName = null;
+    if (appointmentId) {
+      const appointment = await appointmentModel.findById(appointmentId);
+      userName = appointment?.userData?.name || null;
+
+      // Prefer storing the PaymentIntent id as reference
+      const paymentIntentId = session.payment_intent || session_id;
+
+      if (appointment && !appointment.payment) {
+        await appointmentModel.findByIdAndUpdate(
+          appointmentId,
+          { $set: { payment: true, paymentRef: paymentIntentId } },
+          { new: true }
+        );
+      }
+    }
+
+    // Convert to major units only if you need to show it; keep raw for backend logic
+    const amountTotalMinor = session.amount_total; // e.g., cents
+    const currency = session.currency;            // e.g., 'cad'
+
+    return res.json({
+      success: true,
+      userName,
+      appointmentId,
+      amount: amountTotalMinor,  // minor units
+      currency,                  // lowercase ISO
+    });
+  } catch (error) {
+    return res.json({ success: false, message: error.message });
+  }
+};
+
+
+export {registerUser, loginUser, getProfile, updateProfile, bookAppointment , listAppointment, cancelAppointment, paymentStripe, verifyStripePayment};

@@ -97,4 +97,18 @@ const addDoctor = async(req,res) =>{
         res.json({success:false, message: error.message})
       }
     }
+
+    //------------------------------------------------------------------------------
+    // API to get all appointments list for admin panel
+   const appointmentsAdmin =async(req,res)=>{
+    try{
+
+      const 
+
+    }catch(error){
+      console.log(error)
+      res.json({success:false, message: error.message})
+    }
+   }
+
 export {addDoctor, loginAdmin, allDoctors};
