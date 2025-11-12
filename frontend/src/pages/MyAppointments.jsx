@@ -4,6 +4,7 @@ import { AppContext } from '../context/AppContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react';
 
 
 const MyAppointments = () => {
@@ -18,6 +19,7 @@ const MyAppointments = () => {
     const dateArray = slotDate.split('-');
     return dateArray[0] + ' ' + months[Number(dateArray[1])] + ' ' + dateArray[2];
   }
+  const navigate = useNavigate();
 
   const getUserAppointments = async()=>{
     try{

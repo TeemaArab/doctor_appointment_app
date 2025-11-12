@@ -4,6 +4,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import dotenv from 'dotenv';
 import doctorModel from '../models/doctorModel.js';
 import jwt from 'jsonwebtoken'
+import appointmentModel from '../models/appointmentModel.js';
 
 
 
@@ -103,12 +104,38 @@ const addDoctor = async(req,res) =>{
    const appointmentsAdmin =async(req,res)=>{
     try{
 
-      const 
-
+      const appointments = await appointmentModel.find({})
+      res.json({success:true, appointments})
     }catch(error){
       console.log(error)
       res.json({success:false, message: error.message})
     }
    }
 
-export {addDoctor, loginAdmin, allDoctors};
+
+   //------------------------------------------------------------------------------
+   // api for appointment cancellation on admin section
+   const appointmentCancel = async(req,res) => {
+    try{
+        const{appointmentId} = req.body;
+        const appointmentData = await appointmentModel.findById(appointmentId);
+
+        
+        await appointmentModel.findByIdAndUpdate(appointmentId, {cancelled:true});
+
+        // free up slot in doctor data after user cancelled an appointment
+        const {docId, slotDate, slotTime} = appointmentData;
+        const doctorData = await doctorModel.findById(docId);
+        let slots_booked = doctorData.slots_booked
+        slots_booked[slotDate] = slots_booked[slotDate].filter(e => e !== slotTime);
+        await doctorModel.findByIdAndUpdate(docId, {slots_booked});
+
+        res.json({success:true,message:"Appointment cancelled successfully"})
+
+
+    }catch(error){
+        console.log(error);
+        res.json({success:false,message:error.message})
+    }
+}
+export {addDoctor, loginAdmin, allDoctors, appointmentsAdmin, appointmentCancel};
