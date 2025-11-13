@@ -1,0 +1,11 @@
+# global env files
+.env
+*/.env
+
+# node modules anywhere
+node_modules/
+*/node_modules/
+
+# build folders (optional, but good)
+dist/
+*/dist/
