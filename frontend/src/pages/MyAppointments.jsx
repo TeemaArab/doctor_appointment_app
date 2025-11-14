@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const MyAppointments = () => {
