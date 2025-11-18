@@ -266,8 +266,8 @@ const paymentStripe = async(req,res) => {
             }],
           
             metadata: { appointmentId: options.receipt },
-            success_url: 'https://doctor-appointment-frontend-tvxr.onrender.com'/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: 'https://doctor-appointment-frontend-tvxr.onrender.com'/my-appointments`,
+            success_url: 'https://doctor-appointment-frontend-tvxr.onrender.com/payment-success?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'https://doctor-appointment-frontend-tvxr.onrender.com/my-appointments',
         });
         res.json({success:true, order: session});
         
