@@ -12,9 +12,9 @@ import DoctorsList from './pages/Admin/DoctorsList';
 import AllAppointments from './pages/Admin/AllAppointments';
 import AddDoctor from './pages/Admin/AddDoctor';
 import { DoctorContext } from './context/DoctorContext';
-import DoctorDashboard from './pages/Doctor/doctorDashboard';
-import DoctorAppointments from './pages/Doctor/doctorAppointments';
-import DoctorProfile from './pages/Doctor/doctorProfile';
+import DoctorDashboard from './pages/Doctor/DoctorDashboard';
+import DoctorAppointments from './pages/Doctor/DoctorAppointments';
+import DoctorProfile from './pages/Doctor/DoctorProfile';
 
 
 const App = () => {
