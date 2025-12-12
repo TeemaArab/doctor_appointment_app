@@ -42,7 +42,7 @@ const Navbar = () => {
 
              {/*  ADDED: Admin Panel button (desktop) */}
         <a
-          href="http://localhost:5174/"   
+          href="https://doctor-appointment-admin-b3rf.onrender.com/"   // <-- REPLACE WITH ACTUAL ADMIN PANEL URL
           target="_blank"
           rel="noopener noreferrer"
           className="ml-4 px-4 py-2 border rounded-full text-xs font-medium hover:bg-gray-100 transition"
@@ -85,7 +85,7 @@ const Navbar = () => {
 
               {/*  ADDED: Admin Panel link (mobile)  */}
             <a
-              href="http://localhost:5174/"   // <-- SAME URL AS ABOVE
+              href="https://doctor-appointment-admin-b3rf.onrender.com"   // <-- SAME URL AS ABOVE
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setShowMenu(false)}
