@@ -79,6 +79,7 @@ The system is divided into three main modules:
 
 ## Project Structure 
 
+```
 doctor_appointment_app
 │
 ├── admin                         # Admin & Doctor dashboard (React + Vite)
@@ -186,6 +187,8 @@ doctor_appointment_app
 │   └── eslint.config.js
 │
 └── README.md                     # Project documentation
+
+```
 
 # --------------------------------------------------------------------------------
 # API  BASE URL
