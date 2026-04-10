@@ -78,64 +78,107 @@ The system is divided into three main modules:
 # -------------------------------------------------------------------------------------------------------------------------
 
 ## Project Structure 
-
-## Frontend Architecture
+## Project Structure
 
 ```text
-client/
-├── src/
-│   ├── app/
-│   │   ├── features/
-│   │   │   ├── authSlice.js
-│   │   │   └── store.js
-│   │   │
-│   ├── assets/
-│   │   ├── assets.js
-│   │   ├── dummy_profile.png
-│   │   ├── favicon.ico
-│   │   └── logo.svg
+doctor_appointment_app
+│
+├── admin                         # Admin & Doctor dashboard
+│
+│   ├── public
+│   │   └── vite.svg
 │   │
-│   ├── components/
-│   │   ├── home/
-│   │   │   ├── Banner.jsx
-│   │   │   ├── CallToAction.jsx
-│   │   │   ├── Features.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── Testimonial.jsx
-│   │   │   └── Title.jsx
-│   │   │
-│   │   ├── templates/
-│   │   │   ├── ClassicTemplate.jsx
-│   │   │   ├── MinimalTemplate.jsx
-│   │   │   └── ModernTemplate.jsx
-│   │   │
-│   │   ├── forms/
-│   │   │   ├── ColorPicker.jsx
-│   │   │   ├── EducationForm.jsx
-│   │   │   ├── ExperienceForm.jsx
-│   │   │   ├── PersonalInfoForm.jsx
-│   │   │   ├── ProfessionalSummaryForm.jsx
-│   │   │   ├── ProjectForm.jsx
-│   │   │   └── SkillForm.jsx
-│   │   │
-│   │   ├── Navbar.jsx
-│   │   ├── Loader.jsx
-│   │   ├── ResumePreview.jsx
-│   │   └── TemplateSelector.jsx
+│   └── src
+│       ├── assets
+│       │
+│       ├── components
+│       │   ├── Navbar.jsx
+│       │   └── Sidebar.jsx
+│       │
+│       ├── context
+│       │   ├── AdminContext.jsx
+│       │   ├── AppContext.jsx
+│       │   └── DoctorContext.jsx
+│       │
+│       ├── pages
+│       │   ├── Admin
+│       │   ├── Doctor
+│       │   └── Login.jsx
+│       │
+│       ├── App.jsx
+│       ├── main.jsx
+│       └── index.css
+│
+├── backend                       # Node.js + Express API
+│
+│   ├── config
+│   │   ├── cloudinary.js
+│   │   └── mongodb.js
 │   │
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── Login.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── ResumeBuilder.jsx
-│   │   └── Preview.jsx
+│   ├── controllers
+│   │   ├── adminController.js
+│   │   ├── doctorController.js
+│   │   └── userController.js
 │   │
-│   ├── Layout.jsx
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
+│   ├── middlewares
+│   │   ├── authAdmin.js
+│   │   ├── authDoctor.js
+│   │   ├── authUser.js
+│   │   └── multer.js
+│   │
+│   ├── models
+│   │   ├── appointmentModel.js
+│   │   ├── doctorModel.js
+│   │   └── userModel.js
+│   │
+│   ├── routes
+│   │   ├── adminRoute.js
+│   │   ├── doctorRoute.js
+│   │   └── userRoute.js
+│   │
+│   └── server.js
+│
+├── frontend                      # Patient-facing application
+│
+│   ├── public
+│   │   └── vite.svg
+│   │
+│   └── src
+│       ├── assets
+│       │
+│       ├── components
+│       │   ├── Banner.jsx
+│       │   ├── Footer.jsx
+│       │   ├── Header.jsx
+│       │   ├── Navbar.jsx
+│       │   ├── RelatedDoctors.jsx
+│       │   ├── SpecialityMenu.jsx
+│       │   └── TopDoctors.jsx
+│       │
+│       ├── context
+│       │   └── AppContext.jsx
+│       │
+│       ├── pages
+│       │   ├── About.jsx
+│       │   ├── Appointment.jsx
+│       │   ├── Contact.jsx
+│       │   ├── Doctors.jsx
+│       │   ├── Home.jsx
+│       │   ├── Login.jsx
+│       │   ├── MyAppointments.jsx
+│       │   ├── MyProfile.jsx
+│       │   └── PaymentSuccess.jsx
+│       │
+│       ├── App.jsx
+│       ├── main.jsx
+│       ├── App.css
+│       └── index.css
+│
+└── README.md
 ```
+
+
+
 
 # --------------------------------------------------------------------------------
 # API  BASE URL
