@@ -79,28 +79,28 @@ The system is divided into three main modules:
 
 ## Project Structure 
 
+
 ```
 doctor_appointment_app
 │
-├── admin                         # Admin & Doctor dashboard (React + Vite)
+├── admin                       # Admin & Doctor dashboard (React + Vite)
 │   ├── public
 │   │   └── vite.svg
 │   │
 │   ├── src
-│   │   ├── assets                # Images and UI assets
-│   │   │
-│   │   ├── components            # Reusable UI components
+│   │   ├── assets              # Images and UI assets
+│   │   ├── components
 │   │   │   ├── Navbar.jsx
 │   │   │   └── Sidebar.jsx
 │   │   │
-│   │   ├── context               # Global state management
+│   │   ├── context
 │   │   │   ├── AdminContext.jsx
 │   │   │   ├── AppContext.jsx
 │   │   │   └── DoctorContext.jsx
 │   │   │
 │   │   ├── pages
-│   │   │   ├── Admin             # Admin related pages
-│   │   │   ├── Doctor            # Doctor dashboard pages
+│   │   │   ├── Admin
+│   │   │   ├── Doctor
 │   │   │   └── Login.jsx
 │   │   │
 │   │   ├── App.jsx
@@ -110,49 +110,44 @@ doctor_appointment_app
 │   ├── index.html
 │   ├── package.json
 │   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── eslint.config.js
+│   └── vite.config.js
 │
-├── backend                       # Node.js + Express API
-│   │
-│   ├── config                    # External services configuration
+├── backend
+│   ├── config
 │   │   ├── cloudinary.js
 │   │   └── mongodb.js
 │   │
-│   ├── controllers               # Business logic
+│   ├── controllers
 │   │   ├── adminController.js
 │   │   ├── doctorController.js
 │   │   └── userController.js
 │   │
-│   ├── middlewares               # Request processing middleware
+│   ├── middlewares
 │   │   ├── authAdmin.js
 │   │   ├── authDoctor.js
 │   │   ├── authUser.js
 │   │   └── multer.js
 │   │
-│   ├── models                    # MongoDB schemas
+│   ├── models
 │   │   ├── appointmentModel.js
 │   │   ├── doctorModel.js
 │   │   └── userModel.js
 │   │
-│   ├── routes                    # API routes
+│   ├── routes
 │   │   ├── adminRoute.js
 │   │   ├── doctorRoute.js
 │   │   └── userRoute.js
 │   │
-│   ├── server.js                 # Main server entry point
-│   ├── package.json
-│   └── .env
+│   ├── server.js
+│   └── package.json
 │
-├── frontend                      # Patient-facing React application
-│   │
+├── frontend
 │   ├── public
 │   │   └── vite.svg
 │   │
 │   ├── src
-│   │   ├── assets                # Images, icons, UI resources
-│   │   │
-│   │   ├── components            # Reusable UI components
+│   │   ├── assets
+│   │   ├── components
 │   │   │   ├── Banner.jsx
 │   │   │   ├── Footer.jsx
 │   │   │   ├── Header.jsx
@@ -161,7 +156,7 @@ doctor_appointment_app
 │   │   │   ├── SpecialityMenu.jsx
 │   │   │   └── TopDoctors.jsx
 │   │   │
-│   │   ├── context               # Global state management
+│   │   ├── context
 │   │   │   └── AppContext.jsx
 │   │   │
 │   │   ├── pages
@@ -177,18 +172,16 @@ doctor_appointment_app
 │   │   │
 │   │   ├── App.jsx
 │   │   ├── main.jsx
-│   │   ├── App.css
 │   │   └── index.css
 │   │
 │   ├── index.html
 │   ├── package.json
 │   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── eslint.config.js
+│   └── vite.config.js
 │
-└── README.md                     # Project documentation
-
+└── README.md
 ```
+
 
 # --------------------------------------------------------------------------------
 # API  BASE URL
