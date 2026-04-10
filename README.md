@@ -4,7 +4,7 @@ The application demonstrates a complete MERN-style architecture using React, Nod
 
 ## System Architecture
 The application follows a three-tier architecture separating the user interface, server logic, and database.
-
+```
 Client Applications
 │
 ├── Patient Frontend (React + Vite)
@@ -21,11 +21,11 @@ MongoDB Database
    Cloudinary → Image storage
    Stripe → Payment processing
    JWT → Authentication & authorization
-
+```
 # ----------------------------------------------------------------------------------------------------------------
 
 ## Application Modules
-
+```
 The system is divided into three main modules:
 
 * Patient Portal : Allows users to register, log in, browse doctors, and book appointments.
@@ -33,11 +33,11 @@ The system is divided into three main modules:
 * Doctor Dashboard : Allows doctors to manage appointments and update their profiles.
 
 * Admin Dashboard: Allows administrators to manage doctors, appointments
-
+```
 # ----------------------------------------------------------------------------------------------------------------
 
 # Features
-
+```
 ## Patient Features
 - User registration and authentication
 - Secure login using JWT
@@ -66,19 +66,19 @@ The system is divided into three main modules:
 - Enable or disable doctor availability
 - View all platform appointments
 - Cancel appointments if necessary
-
-# ---------------------------------------------------------------------------------------------------------------------
+```
+# ----------------------------------------------------------------------------------
 
 
 ## Tech Stack
+```
 - Frontend: React (Vite), Tailwind CSS, Axios, React Router, React Toastify
 - Backend: Node.js, Express.js, Mongoose, MongoDB, JWT authentication, Mutler (file upload), Cloudinary (image hosting), Stripe API (Payment Processing)
+```
 
-
-# -------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
 
 ## Project Structure 
-## Project Structure
 
 ```text
 doctor_appointment_app
@@ -180,7 +180,7 @@ doctor_appointment_app
 
 
 
-# --------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # API  BASE URL
 http://localhost:4000/api
 
@@ -222,8 +222,10 @@ BASE ROUTE : /api/user
  GET    `/api/user/verify-stripe-payment` 
 
 
-# -------------------------------------------------------------------------------
+# -----------------------------------------------------------------------
+
 ## Demo Access
+```
 Admin demo credentials are provided for reviewers.
 
 **Admin Login**  
@@ -235,7 +237,9 @@ Email: milad.arab@prescripto.com
 Password: 123456789
 
 >  Demo credentials only. No real user data is stored.
+```
 
+```
 ## Setup (Optional)
 
 # Start frontend
@@ -249,3 +253,4 @@ npm run dev
 # start backend
 cd backend
 npm run server
+```
