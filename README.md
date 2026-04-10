@@ -79,109 +79,63 @@ The system is divided into three main modules:
 
 ## Project Structure 
 
+## Frontend Architecture
 
-```
-doctor_appointment_app
-│
-├── admin                       # Admin & Doctor dashboard (React + Vite)
-│   ├── public
-│   │   └── vite.svg
-│   │
-│   ├── src
-│   │   ├── assets              # Images and UI assets
-│   │   ├── components
-│   │   │   ├── Navbar.jsx
-│   │   │   └── Sidebar.jsx
+```text
+client/
+├── src/
+│   ├── app/
+│   │   ├── features/
+│   │   │   ├── authSlice.js
+│   │   │   └── store.js
 │   │   │
-│   │   ├── context
-│   │   │   ├── AdminContext.jsx
-│   │   │   ├── AppContext.jsx
-│   │   │   └── DoctorContext.jsx
-│   │   │
-│   │   ├── pages
-│   │   │   ├── Admin
-│   │   │   ├── Doctor
-│   │   │   └── Login.jsx
-│   │   │
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
+│   ├── assets/
+│   │   ├── assets.js
+│   │   ├── dummy_profile.png
+│   │   ├── favicon.ico
+│   │   └── logo.svg
 │   │
-│   ├── index.html
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── vite.config.js
-│
-├── backend
-│   ├── config
-│   │   ├── cloudinary.js
-│   │   └── mongodb.js
-│   │
-│   ├── controllers
-│   │   ├── adminController.js
-│   │   ├── doctorController.js
-│   │   └── userController.js
-│   │
-│   ├── middlewares
-│   │   ├── authAdmin.js
-│   │   ├── authDoctor.js
-│   │   ├── authUser.js
-│   │   └── multer.js
-│   │
-│   ├── models
-│   │   ├── appointmentModel.js
-│   │   ├── doctorModel.js
-│   │   └── userModel.js
-│   │
-│   ├── routes
-│   │   ├── adminRoute.js
-│   │   ├── doctorRoute.js
-│   │   └── userRoute.js
-│   │
-│   ├── server.js
-│   └── package.json
-│
-├── frontend
-│   ├── public
-│   │   └── vite.svg
-│   │
-│   ├── src
-│   │   ├── assets
-│   │   ├── components
+│   ├── components/
+│   │   ├── home/
 │   │   │   ├── Banner.jsx
+│   │   │   ├── CallToAction.jsx
+│   │   │   ├── Features.jsx
 │   │   │   ├── Footer.jsx
-│   │   │   ├── Header.jsx
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── RelatedDoctors.jsx
-│   │   │   ├── SpecialityMenu.jsx
-│   │   │   └── TopDoctors.jsx
+│   │   │   ├── Hero.jsx
+│   │   │   ├── Testimonial.jsx
+│   │   │   └── Title.jsx
 │   │   │
-│   │   ├── context
-│   │   │   └── AppContext.jsx
+│   │   ├── templates/
+│   │   │   ├── ClassicTemplate.jsx
+│   │   │   ├── MinimalTemplate.jsx
+│   │   │   └── ModernTemplate.jsx
 │   │   │
-│   │   ├── pages
-│   │   │   ├── About.jsx
-│   │   │   ├── Appointment.jsx
-│   │   │   ├── Contact.jsx
-│   │   │   ├── Doctors.jsx
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── MyAppointments.jsx
-│   │   │   ├── MyProfile.jsx
-│   │   │   └── PaymentSuccess.jsx
+│   │   ├── forms/
+│   │   │   ├── ColorPicker.jsx
+│   │   │   ├── EducationForm.jsx
+│   │   │   ├── ExperienceForm.jsx
+│   │   │   ├── PersonalInfoForm.jsx
+│   │   │   ├── ProfessionalSummaryForm.jsx
+│   │   │   ├── ProjectForm.jsx
+│   │   │   └── SkillForm.jsx
 │   │   │
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
+│   │   ├── Navbar.jsx
+│   │   ├── Loader.jsx
+│   │   ├── ResumePreview.jsx
+│   │   └── TemplateSelector.jsx
 │   │
-│   ├── index.html
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── vite.config.js
-│
-└── README.md
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── ResumeBuilder.jsx
+│   │   └── Preview.jsx
+│   │
+│   ├── Layout.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
 ```
-
 
 # --------------------------------------------------------------------------------
 # API  BASE URL
